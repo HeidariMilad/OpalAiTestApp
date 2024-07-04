@@ -24,7 +24,6 @@ open class TitleLabel: UIView {
     }
     */
     
-    // fix this error
     public init(title: String) {
         super.init(frame: .zero)
         self.title = title
