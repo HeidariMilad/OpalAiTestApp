@@ -25,6 +25,10 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   var router: (NSObjectProtocol & ScanViewerRoutingLogic & ScanViewerDataPassing)?
 
     var coder: NSCoder!
+    var smallDetent: UISheetPresentationController.Detent!
+    var mediumDetent: UISheetPresentationController.Detent!
+    var pageViewController: PageViewController!
+    var draggableVC: DraggableViewController!
     
   // MARK: Object lifecycle
   
@@ -76,14 +80,20 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
       self.view.backgroundColor = UIColor(resource: .background)
       setupPageVIewController()
   }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentSheet()
+    }
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
+    var bottomConstraint: NSLayoutConstraint?
     func setupPageVIewController() {
         // Instantiate the PageViewController
-        guard let pageViewController = PageViewController(coder: self.coder) else { fatalError() }
+        pageViewController = PageViewController(coder: self.coder)
         pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
         
         // Add it as a child view controller
@@ -94,11 +104,12 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageViewController.view)
         
+        bottomConstraint = pageViewController.view.heightAnchor.constraint(equalToConstant: self.view.bounds.maxY - 130)
         NSLayoutConstraint.activate([
             pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 0),
-            pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            bottomConstraint!
         ])
         
         // Notify the PageViewController that it has been moved to the parent
@@ -115,4 +126,81 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   {
     //nameTextField.text = viewModel.name
   }
+}
+
+
+extension ScanViewerViewController: UISheetPresentationControllerDelegate {
+    @objc func presentSheet() {
+        draggableVC = DraggableViewController(coder: self.coder)
+        pageViewController.viewControllers?.forEach({ scanViewer in
+            let scanViewer = scanViewer as? UIScanViewerController
+            scanViewer?.alertPresenter = draggableVC
+        })
+        draggableVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = draggableVC.sheetPresentationController {
+            smallDetent = UISheetPresentationController.Detent.custom { context in
+                return 40
+            }
+            mediumDetent = UISheetPresentationController.Detent.custom { context in
+                return self.view.bounds.height / 3
+            }
+            
+            sheet.detents = [smallDetent, mediumDetent, .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = mediumDetent.identifier
+            sheet.delegate = self
+        }
+        
+        present(draggableVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - UISheetPresentationControllerDelegate
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
+    }
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        // Handle dismissal if necessary
+    }
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        guard let detentIdentifier = sheetPresentationController.selectedDetentIdentifier else { return }
+
+        // Perform animations based on detentIdentifier
+        UIView.animate(withDuration: 0.3) {
+            if detentIdentifier == self.mediumDetent.identifier {
+                // Update constraints for medium detent
+                self.updateConstraintsForMediumDetent()
+            } else if detentIdentifier == UISheetPresentationController.Detent.Identifier.large {
+                // Update constraints for large detent
+                self.updateConstraintsForLargeDetent()
+            } else {
+                // Update constraints for small detent
+                self.updateConstraintsForSmallDetent()
+            }
+            // Apply the layout changes
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    
+    func updateConstraintsForSmallDetent() {
+        // Update your constraints for small detent
+        self.bottomConstraint?.constant = self.view.bounds.maxY - 130
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func updateConstraintsForMediumDetent() {
+        // Update your constraints for medium detent
+        self.bottomConstraint?.constant = self.view.bounds.maxY / 1.75
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func updateConstraintsForLargeDetent() {
+        // Update your constraints for large detent
+        
+    }
 }

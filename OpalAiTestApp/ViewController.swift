@@ -8,7 +8,7 @@
 import UIKit
 import UIComponents
 
-class ViewController: UIViewController, ToggleButtonDelegate {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,64 +18,92 @@ class ViewController: UIViewController, ToggleButtonDelegate {
     
     }
     
-    func toggled(state: ToggleButtonCases) {
-        print("Toggled to: ", state.rawValue)
-    }
 
 }
 
-class MainViewController: UIViewController, UISheetPresentationControllerDelegate {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
-        
-        let presentButton = UIButton(type: .system)
-        presentButton.setTitle("Present Sheet", for: .normal)
-        presentButton.addTarget(self, action: #selector(presentSheet), for: .touchUpInside)
-        
-        presentButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(presentButton)
-        
-        NSLayoutConstraint.activate([
-            presentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            presentButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
-    var coder: NSCoder!
-    required init?(coder: NSCoder) {
-        self.coder = coder
-        super.init(coder: coder)
-    }
-    @objc func presentSheet() {
-        guard let draggableVC = DraggableViewController(coder: self.coder) else { fatalError() }
-          draggableVC.modalPresentationStyle = .pageSheet
-          
-          if let sheet = draggableVC.sheetPresentationController {
-              let smallDetent = UISheetPresentationController.Detent.custom { context in
-                  return 40
-              }
-              let mediumDetent = UISheetPresentationController.Detent.custom { context in
-                  return self.view.bounds.height / 3
-              }
-              
-              sheet.detents = [smallDetent, mediumDetent, .large()]
-              sheet.prefersGrabberVisible = true
-              sheet.largestUndimmedDetentIdentifier = mediumDetent.identifier
-              sheet.delegate = self
-          }
-          
-          present(draggableVC, animated: true, completion: nil)
-      }
-    
-    // MARK: - UISheetPresentationControllerDelegate
-    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
-        return false
-    }
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        // Handle dismissal if necessary
-    }
-}
+//class MainViewController: UIViewController, UISheetPresentationControllerDelegate {
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
+//        
+//        let presentButton = UIButton(type: .system)
+//        presentButton.setTitle("Present Sheet", for: .normal)
+//        presentButton.addTarget(self, action: #selector(presentSheet), for: .touchUpInside)
+//        
+//        presentButton.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(presentButton)
+//        
+//        NSLayoutConstraint.activate([
+//            presentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            presentButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
+//    var coder: NSCoder!
+//    required init?(coder: NSCoder) {
+//        self.coder = coder
+//        super.init(coder: coder)
+//    }
+//    @objc func presentSheet() {
+//        guard let draggableVC = DraggableViewController(coder: self.coder) else { fatalError() }
+//          draggableVC.modalPresentationStyle = .pageSheet
+//          
+//          if let sheet = draggableVC.sheetPresentationController {
+//              let smallDetent = UISheetPresentationController.Detent.custom { context in
+//                  return 40
+//              }
+//              let mediumDetent = UISheetPresentationController.Detent.custom { context in
+//                  return self.view.bounds.height / 3
+//              }
+//              
+//              sheet.detents = [smallDetent, mediumDetent, .large()]
+//              sheet.prefersGrabberVisible = true
+//              sheet.largestUndimmedDetentIdentifier = mediumDetent.identifier
+//              sheet.delegate = self
+//          }
+//          
+//          present(draggableVC, animated: true, completion: nil)
+//      }
+//    
+//    // MARK: - UISheetPresentationControllerDelegate
+//    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+//        return false
+//    }
+//    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+//        // Handle dismissal if necessary
+//    }
+//    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+//        guard let detentIdentifier = sheetPresentationController.selectedDetentIdentifier else { return }
+//        
+//        // Perform animations based on detentIdentifier
+//        UIView.animate(withDuration: 0.3) {
+//            if detentIdentifier == UISheetPresentationController.Detent.Identifier.medium {
+//                // Update constraints for medium detent
+//                self.updateConstraintsForMediumDetent()
+//            } else if detentIdentifier == UISheetPresentationController.Detent.Identifier.large {
+//                // Update constraints for large detent
+//                self.updateConstraintsForLargeDetent()
+//            } else {
+//                // Update constraints for small detent
+//                self.updateConstraintsForSmallDetent()
+//            }
+//            self.view.layoutIfNeeded()
+//        }
+//    }
+//
+//        func updateConstraintsForSmallDetent() {
+//            // Update your constraints for small detent
+//        }
+//
+//        func updateConstraintsForMediumDetent() {
+//            // Update your constraints for medium detent
+//        }
+//
+//        func updateConstraintsForLargeDetent() {
+//            // Update your constraints for large detent
+//        }
+//    
+//}
 
 
 

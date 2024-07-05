@@ -121,3 +121,34 @@ extension DraggableViewController {
 }
 
 
+extension DraggableViewController: EditBtnDelegate {
+    public func editBtnTapped() {
+        // Create an alert controller
+        let alertController = UIAlertController(title: "Rename Project", message: "Enter the new project name", preferredStyle: .alert)
+        
+        // Add a text field to the alert controller
+        alertController.addTextField { textField in
+            textField.placeholder = "New project name"
+        }
+        
+        // Add a cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        // Add a rename action
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak self] _ in
+            if let newName = alertController.textFields?.first?.text {
+                self?.renameProject(to: newName)
+            }
+        }
+        alertController.addAction(renameAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+ 
+    func renameProject(to newName: String) {
+        // Implement your project renaming logic here
+        //titleLabel.changeTitle(text: newName)
+    }
+}

@@ -10,6 +10,7 @@ import UIComponents
 
 public class UIScanViewerController: UIViewController {
     
+    public var alertPresenter: UIViewController?
     private var scanViewer3D: ScanViewer3D?
     private var scanViewer2D: ScanViewer2D?
     private var toggleBtn: ToggleButton!
@@ -125,7 +126,7 @@ extension UIScanViewerController: EditBtnDelegate {
         alertController.addAction(renameAction)
         
         // Present the alert controller
-        present(alertController, animated: true, completion: nil)
+        alertPresenter?.present(alertController, animated: true, completion: nil)
     }
  
     func renameProject(to newName: String) {
