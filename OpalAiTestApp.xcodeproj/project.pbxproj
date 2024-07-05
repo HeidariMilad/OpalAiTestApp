@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		110612332C36ED59009CC454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110612322C36ED59009CC454 /* Assets.xcassets */; };
 		110612372C3729CE009CC454 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110612362C3729CE009CC454 /* ToggleButton.swift */; };
+		114B157E2C38B13200B56CEC /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B157D2C38B13200B56CEC /* DescriptionView.swift */; };
 		11C3E52D2C36B8F1000A454D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3E52C2C36B8F1000A454D /* AppDelegate.swift */; };
 		11C3E52F2C36B8F1000A454D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3E52E2C36B8F1000A454D /* SceneDelegate.swift */; };
 		11C3E5362C36B8F2000A454D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11C3E5352C36B8F2000A454D /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		110612322C36ED59009CC454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		110612362C3729CE009CC454 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		114B157D2C38B13200B56CEC /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		11C3E5292C36B8F0000A454D /* OpalAiTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpalAiTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C3E52C2C36B8F1000A454D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C3E52E2C36B8F1000A454D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				110612362C3729CE009CC454 /* ToggleButton.swift */,
 				11EC234B2C374F6400451209 /* PageViewController.swift */,
 				11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */,
+				114B157D2C38B13200B56CEC /* DescriptionView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				11C3E5702C36C43F000A454D /* TitleLabel.swift in Sources */,
 				110612372C3729CE009CC454 /* ToggleButton.swift in Sources */,
 				11EC234C2C374F6400451209 /* PageViewController.swift in Sources */,
+				114B157E2C38B13200B56CEC /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

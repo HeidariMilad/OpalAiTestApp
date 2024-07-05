@@ -15,6 +15,7 @@ public class UIScanViewerController: UIViewController {
     private var scanViewer2D: ScanViewer2D?
     private var toggleBtn: ToggleButton!
     private var titleLabel: TitleLabel!
+    private var descriptionText: DescriptionView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,24 @@ public class UIScanViewerController: UIViewController {
         view.backgroundColor = UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
         addToggleBtn()
         addTitleLabel()
+        addDescriptionText()
         setupScanViewer3D()
         
     }
     
+    func addDescriptionText(){
+        descriptionText = DescriptionView(title: "3D Floor Title", subTitle: "136K vertices, 212K faces")
+        
+        self.view.addSubview(descriptionText)
+        descriptionText.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            descriptionText.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            descriptionText.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60),
+            descriptionText.heightAnchor.constraint(equalToConstant: 35),
+            descriptionText.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ])
+    }
     func addToggleBtn(){
         toggleBtn = ToggleButton(label: .ThreeD)
         toggleBtn.delegate = self
@@ -44,17 +59,25 @@ public class UIScanViewerController: UIViewController {
     func setupScanViewer3D() {
         scanViewer3D = ScanViewer3D(frame: self.view.bounds)
         scanViewer3D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        descriptionText.updateDescription(title: "3D Floor Title", subTitle: "136K vertices, 212K faces")
+        
         self.view.addSubview(scanViewer3D!)
         self.view.bringSubviewToFront(toggleBtn)
         self.view.bringSubviewToFront(titleLabel)
+        self.view.bringSubviewToFront(descriptionText)
     }
     
     func setupScanViewer2D() {
         scanViewer2D = ScanViewer2D(frame: self.view.bounds)
         scanViewer2D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        descriptionText.updateDescription(title: "2D Floor Title")
+        
         self.view.addSubview(scanViewer2D!)
         self.view.bringSubviewToFront(toggleBtn)
         self.view.bringSubviewToFront(titleLabel)
+        self.view.bringSubviewToFront(descriptionText)
     }
     
     func remove3DViewer(){
