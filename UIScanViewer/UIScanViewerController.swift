@@ -13,12 +13,14 @@ public class UIScanViewerController: UIViewController {
     private var scanViewer3D: ScanViewer3D?
     private var scanViewer2D: ScanViewer2D?
     private var toggleBtn: ToggleButton!
+    private var titleLabel: TitleLabel!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
         addToggleBtn()
+        addTitleLabel()
         setupScanViewer3D()
         
     }
@@ -32,7 +34,7 @@ public class UIScanViewerController: UIViewController {
         
         NSLayoutConstraint.activate([
             toggleBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            toggleBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            toggleBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 60),
             toggleBtn.heightAnchor.constraint(equalToConstant: 40),
             toggleBtn.widthAnchor.constraint(equalToConstant: 40)
             
@@ -43,6 +45,7 @@ public class UIScanViewerController: UIViewController {
         scanViewer3D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(scanViewer3D!)
         self.view.bringSubviewToFront(toggleBtn)
+        self.view.bringSubviewToFront(titleLabel)
     }
     
     func setupScanViewer2D() {
@@ -50,6 +53,7 @@ public class UIScanViewerController: UIViewController {
         scanViewer2D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(scanViewer2D!)
         self.view.bringSubviewToFront(toggleBtn)
+        self.view.bringSubviewToFront(titleLabel)
     }
     
     func remove3DViewer(){
@@ -80,4 +84,52 @@ extension UIScanViewerController: ToggleButtonDelegate {
         toggleDimension()
     }
     
+}
+
+extension UIScanViewerController: EditBtnDelegate {
+    func addTitleLabel(){
+        titleLabel = TitleLabel(title: "OpalAiTest")
+        titleLabel.delegate = self
+        self.view.addSubview(titleLabel)
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            // label in top center of view
+            titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor)
+            
+        ])
+    }
+    public func editBtnTapped() {
+        // Create an alert controller
+        let alertController = UIAlertController(title: "Rename Project", message: "Enter the new project name", preferredStyle: .alert)
+        
+        // Add a text field to the alert controller
+        alertController.addTextField { textField in
+            textField.placeholder = "New project name"
+        }
+        
+        // Add a cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        // Add a rename action
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak self] _ in
+            if let newName = alertController.textFields?.first?.text {
+                self?.renameProject(to: newName)
+            }
+        }
+        alertController.addAction(renameAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+ 
+    func renameProject(to newName: String) {
+        // Implement your project renaming logic here
+        titleLabel.changeTitle(text: newName)
+    }
 }

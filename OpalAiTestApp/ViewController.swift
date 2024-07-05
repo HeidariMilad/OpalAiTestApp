@@ -8,7 +8,7 @@
 import UIKit
 import UIComponents
 
-class ViewController: UIViewController, EditBtnDelegate, ToggleButtonDelegate {
+class ViewController: UIViewController, ToggleButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,26 +18,6 @@ class ViewController: UIViewController, EditBtnDelegate, ToggleButtonDelegate {
     
     }
     
-    func addTitleLabel(){
-        let label = TitleLabel(title: "First Edition map")
-        label.delegate = self
-        self.view.addSubview(label)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            // label in top center of view
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            label.heightAnchor.constraint(equalToConstant: 40),
-            label.widthAnchor.constraint(equalTo: self.view.widthAnchor)
-            
-        ])
-    }
-    func editBtnTapped() {
-        print("Edit Tapped")
-    }
- 
     func toggled(state: ToggleButtonCases) {
         print("Toggled to: ", state.rawValue)
     }

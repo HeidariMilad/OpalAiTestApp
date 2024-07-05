@@ -15,6 +15,7 @@ open class TitleLabel: UIView {
 
     var title: String!
     public var delegate: EditBtnDelegate?
+    private var label: UILabel!
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -34,8 +35,11 @@ open class TitleLabel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func changeTitle(text: String) {
+        self.label.text = text
+    }
     func setupLabel() {
-        let label = UILabel(frame: self.frame)
+        label = UILabel(frame: self.frame)
         self.addSubview(label)
         label.text = self.title
         label.font = UIFont.preferredFont(forTextStyle: .headline)

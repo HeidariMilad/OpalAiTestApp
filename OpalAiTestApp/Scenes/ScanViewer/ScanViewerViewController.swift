@@ -25,7 +25,6 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   var router: (NSObjectProtocol & ScanViewerRoutingLogic & ScanViewerDataPassing)?
 
     var coder: NSCoder!
-
     
   // MARK: Object lifecycle
   
@@ -74,34 +73,38 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-   
-      // Instantiate the PageViewController
-      guard let pageViewController = PageViewController(coder: self.coder) else { fatalError() }
-      pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
-      
-      // Add it as a child view controller
-      addChild(pageViewController)
-      
-      // Set the frame or constraints to make it cover the entire view
-      pageViewController.view.frame = view.bounds
-      pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview(pageViewController.view)
-      
-      NSLayoutConstraint.activate([
-        pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        pageViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-        pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-      ])
-      
-      // Notify the PageViewController that it has been moved to the parent
-      pageViewController.didMove(toParent: self)
+      self.view.backgroundColor = UIColor(resource: .background)
+      setupPageVIewController()
   }
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
+    func setupPageVIewController() {
+        // Instantiate the PageViewController
+        guard let pageViewController = PageViewController(coder: self.coder) else { fatalError() }
+        pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
+        
+        // Add it as a child view controller
+        addChild(pageViewController)
+        
+        // Set the frame or constraints to make it cover the entire view
+        pageViewController.view.frame = view.bounds
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pageViewController.view)
+        
+        NSLayoutConstraint.activate([
+            pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pageViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 0),
+            pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        // Notify the PageViewController that it has been moved to the parent
+        pageViewController.didMove(toParent: self)
+    }
+    
   func doSomething()
   {
     let request = ScanViewer.Something.Request()
