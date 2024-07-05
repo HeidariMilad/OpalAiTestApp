@@ -8,22 +8,39 @@
 import UIKit
 import SceneKit
 
-public class UIScanViewer3D: UIViewController {
+public class ScanViewer3D: UIView {
     var sceneView: SCNView!
     var modelNode: SCNNode!
 
-    override public func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    public func cleanUp(){
+        self.modelNode.removeFromParentNode()
+        self.modelNode = nil
+        self.sceneView.removeFromSuperview()
+        self.sceneView.scene = nil
+        self.sceneView = nil
+    }
+    func setup(){
         setupSceneView()
         loadUSDZModel()
         //setupGestures()
     }
-
     func setupSceneView() {
-        sceneView = SCNView(frame: self.view.frame)
-        sceneView.allowsCameraControl = true
-        sceneView.autoenablesDefaultLighting = true
-        self.view.addSubview(sceneView)
+            self.sceneView = SCNView(frame: self.bounds)
+            self.sceneView.allowsCameraControl = true
+            self.sceneView.autoenablesDefaultLighting = true
+            self.sceneView.backgroundColor = .clear
+            self.addSubview(self.sceneView)
+            self.backgroundColor = .clear
     }
 
     func loadUSDZModel() {
@@ -35,8 +52,8 @@ public class UIScanViewer3D: UIViewController {
             fatalError("Failed to load USDZ model")
         }
         
-        sceneView.scene = scene
-        modelNode = scene.rootNode.childNodes.first
+        self.sceneView.scene = scene
+        self.modelNode = scene.rootNode.childNodes.first
     }
 
     func setupGestures() {
@@ -46,9 +63,9 @@ public class UIScanViewer3D: UIViewController {
         
         doubleTapGesture.numberOfTapsRequired = 2
 
-        self.view.addGestureRecognizer(panGesture)
-        self.view.addGestureRecognizer(pinchGesture)
-        self.view.addGestureRecognizer(doubleTapGesture)
+        self.addGestureRecognizer(panGesture)
+        self.addGestureRecognizer(pinchGesture)
+        self.addGestureRecognizer(doubleTapGesture)
     }
 
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -81,4 +98,3 @@ public class UIScanViewer3D: UIViewController {
         }
     }
 }
-

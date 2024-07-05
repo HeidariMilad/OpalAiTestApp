@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+public class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     var pageControl = UIPageControl()
     var nextPageButton = UIButton()
@@ -15,15 +15,15 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
 
     // MARK: UIPageViewControllerDataSource
 
-    lazy var orderedViewControllers: [UIViewController] = {
+    public lazy var orderedViewControllers: [UIViewController] = {
         return [RedViewController(), BlueViewController()]
     }()
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
@@ -102,7 +102,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     }
     
     // MARK: Delegate methods
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             if let pageContentViewController = pageViewController.viewControllers?.first {
                 self.pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController) ?? 0
@@ -112,7 +112,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
 
     // MARK: Data source functions
    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
@@ -130,7 +130,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         return orderedViewControllers[previousIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }

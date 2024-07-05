@@ -15,26 +15,9 @@ class ViewController: UIViewController, EditBtnDelegate, ToggleButtonDelegate {
 
         // Do any additional setup after loading the view.
         
-        addToggleBtn()
     
     }
     
-    func addToggleBtn(){
-        let toggle = ToggleButton(label: .ThreeD)
-        toggle.delegate = self
-        self.view.addSubview(toggle)
-        
-        toggle.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            // label in top center of view
-            toggle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            toggle.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            toggle.heightAnchor.constraint(equalToConstant: 40),
-            toggle.widthAnchor.constraint(equalToConstant: 40)
-            
-        ])
-    }
     func addTitleLabel(){
         let label = TitleLabel(title: "First Edition map")
         label.delegate = self
@@ -118,3 +101,192 @@ class MainViewController: UIViewController, UISheetPresentationControllerDelegat
 
 
 
+class FloorPlanView: UIView {
+    var welcome: Welcome?
+
+    init(frame: CGRect, welcome: Welcome) {
+        self.welcome = welcome
+        super.init(frame: frame)
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupView() {
+        guard let welcome = welcome else { return }
+
+        // Render walls
+        for wall in welcome.walls {
+            let wallView = WallView(wall: wall)
+            addSubview(wallView)
+        }
+
+        // Render doors
+        for door in welcome.doors {
+            let doorView = DoorView(door: door)
+            addSubview(doorView)
+        }
+
+        // Render windows
+        for window in welcome.windows {
+            let windowView = WindowView(window: window)
+            addSubview(windowView)
+        }
+
+        // Render openings
+        for opening in welcome.openings {
+            let openingView = OpeningView(opening: opening)
+            addSubview(openingView)
+        }
+
+        // Render objects
+        for object in welcome.objects {
+            let objectView = ObjectView(object: object)
+            addSubview(objectView)
+        }
+    }
+}
+
+class WallView: UIView {
+    init(wall: Wall) {
+        let width = CGFloat(wall.dimensions[0])
+        let height = CGFloat(wall.dimensions[1])
+        super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        backgroundColor = .gray
+        center = CGPoint(x: CGFloat(wall.transform[12]), y: CGFloat(wall.transform[13]))
+        transform = CGAffineTransform(rotationAngle: CGFloat(atan2(wall.transform[4], wall.transform[0])))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class DoorView: UIView {
+    init(door: DoorElement) {
+        let width = CGFloat(door.dimensions[0])
+        let height = CGFloat(door.dimensions[1])
+        super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        backgroundColor = .brown
+        center = CGPoint(x: CGFloat(door.transform[12]), y: CGFloat(door.transform[13]))
+        transform = CGAffineTransform(rotationAngle: CGFloat(atan2(door.transform[4], door.transform[0])))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class WindowView: UIView {
+    init(window: Window) {
+        let width = CGFloat(window.dimensions[0])
+        let height = CGFloat(window.dimensions[1])
+        super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        backgroundColor = .blue
+        center = CGPoint(x: CGFloat(window.transform[12]), y: CGFloat(window.transform[13]))
+        transform = CGAffineTransform(rotationAngle: CGFloat(atan2(window.transform[4], window.transform[0])))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class OpeningView: UIView {
+    init(opening: Opening) {
+        let width = CGFloat(opening.dimensions[0])
+        let height = CGFloat(opening.dimensions[1])
+        super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        backgroundColor = .green
+        center = CGPoint(x: CGFloat(opening.transform[12]), y: CGFloat(opening.transform[13]))
+        transform = CGAffineTransform(rotationAngle: CGFloat(atan2(opening.transform[4], opening.transform[0])))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class ObjectView: UIView {
+    init(object: Object) {
+        let width = CGFloat(object.dimensions[0])
+        let height = CGFloat(object.dimensions[1])
+        super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        backgroundColor = .purple
+        center = CGPoint(x: CGFloat(object.transform[12]), y: CGFloat(object.transform[13]))
+        transform = CGAffineTransform(rotationAngle: CGFloat(atan2(object.transform[4], object.transform[0])))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+
+class TwoDViewController: UIViewController, UIScrollViewDelegate {
+    var scrollView: UIScrollView!
+    var floorPlanView: FloorPlanView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Parse the JSON to get the floor plan data
+        guard let welcome = parseJSON() else { return }
+
+        // Setup the scroll view
+        scrollView = UIScrollView(frame: view.bounds)
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 0.5
+        scrollView.maximumZoomScale = 50.0
+        view.addSubview(scrollView)
+
+        // Setup the floor plan view
+        floorPlanView = FloorPlanView(frame: view.bounds, welcome: welcome)
+        scrollView.addSubview(floorPlanView)
+        scrollView.contentSize = floorPlanView.bounds.size
+
+        // Add gesture recognizers for rotation and panning
+        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(handleRotation(_:)))
+        scrollView.addGestureRecognizer(rotationGestureRecognizer)
+
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        scrollView.addGestureRecognizer(panGestureRecognizer)
+    }
+
+    // UIScrollViewDelegate method
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return floorPlanView
+    }
+
+    @objc func handleRotation(_ gestureRecognizer: UIRotationGestureRecognizer) {
+        if let view = gestureRecognizer.view {
+            view.transform = view.transform.rotated(by: gestureRecognizer.rotation)
+            gestureRecognizer.rotation = 0
+        }
+    }
+
+    @objc func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let translation = gestureRecognizer.translation(in: gestureRecognizer.view)
+        if let view = gestureRecognizer.view {
+            view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
+            gestureRecognizer.setTranslation(CGPoint.zero, in: view)
+        }
+    }
+
+    // Function to parse the JSON file
+    func parseJSON() -> Welcome? {
+        let url = Bundle.main.url(forResource: "sample", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        do {
+            let welcome = try decoder.decode(Welcome.self, from: data)
+            return welcome
+        } catch {
+            print("Error decoding JSON: \(error)")
+            return nil
+        }
+    }
+}

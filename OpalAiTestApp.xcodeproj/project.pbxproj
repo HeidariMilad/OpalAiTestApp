@@ -40,6 +40,8 @@
 		11EC235F2C38578E00451209 /* UIScanViewer3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC235E2C38578E00451209 /* UIScanViewer3D.swift */; };
 		11EC23612C38579C00451209 /* UIScanViewer2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23602C38579C00451209 /* UIScanViewer2D.swift */; };
 		11EC23632C385ADE00451209 /* sample.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11EC23622C385ADE00451209 /* sample.usdz */; };
+		11EC23682C38664700451209 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 11EC23672C38664700451209 /* sample.json */; };
+		11EC236A2C38672600451209 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23692C38672600451209 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		11EC235E2C38578E00451209 /* UIScanViewer3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScanViewer3D.swift; sourceTree = "<group>"; };
 		11EC23602C38579C00451209 /* UIScanViewer2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScanViewer2D.swift; sourceTree = "<group>"; };
 		11EC23622C385ADE00451209 /* sample.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sample.usdz; sourceTree = "<group>"; };
+		11EC23672C38664700451209 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
+		11EC23692C38672600451209 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,8 @@
 				11C3E53A2C36B8F2000A454D /* Info.plist */,
 				11C3E5712C36C91A000A454D /* Main.storyboard */,
 				11C3E5732C36C93C000A454D /* ViewController.swift */,
+				11EC23692C38672600451209 /* Model.swift */,
+				11EC23672C38664700451209 /* sample.json */,
 			);
 			path = OpalAiTestApp;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11C3E5362C36B8F2000A454D /* Assets.xcassets in Resources */,
+				11EC23682C38664700451209 /* sample.json in Resources */,
 				11C3E5392C36B8F2000A454D /* Base in Resources */,
 				11C3E5722C36C91A000A454D /* Main.storyboard in Resources */,
 			);
@@ -394,6 +401,7 @@
 				11EC23582C38283E00451209 /* DraggableViewController.swift in Sources */,
 				11EC23592C38283E00451209 /* DraggableInteractor.swift in Sources */,
 				11C3E5672C36BA0B000A454D /* ScanViewerPresenter.swift in Sources */,
+				11EC236A2C38672600451209 /* Model.swift in Sources */,
 				11C3E5682C36BA0B000A454D /* ScanViewerWorker.swift in Sources */,
 				11C3E5692C36BA0B000A454D /* ScanViewerRouter.swift in Sources */,
 				11C3E5742C36C93C000A454D /* ViewController.swift in Sources */,

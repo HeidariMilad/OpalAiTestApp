@@ -11,6 +11,8 @@
 //
 
 import UIKit
+import UIComponents
+import UIScanViewer
 
 protocol ScanViewerDisplayLogic: class
 {
@@ -22,6 +24,9 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   var interactor: ScanViewerBusinessLogic?
   var router: (NSObjectProtocol & ScanViewerRoutingLogic & ScanViewerDataPassing)?
 
+    var coder: NSCoder!
+
+    
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -33,6 +38,7 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   required init?(coder aDecoder: NSCoder)
   {
     super.init(coder: aDecoder)
+      self.coder = aDecoder
     setup()
   }
   
@@ -65,11 +71,31 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   }
   
   // MARK: View lifecycle
-  
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+   
+      // Instantiate the PageViewController
+      guard let pageViewController = PageViewController(coder: self.coder) else { fatalError() }
+      pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
+      
+      // Add it as a child view controller
+      addChild(pageViewController)
+      
+      // Set the frame or constraints to make it cover the entire view
+      pageViewController.view.frame = view.bounds
+      pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(pageViewController.view)
+      
+      NSLayoutConstraint.activate([
+        pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        pageViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+        pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      ])
+      
+      // Notify the PageViewController that it has been moved to the parent
+      pageViewController.didMove(toParent: self)
   }
   
   // MARK: Do something
