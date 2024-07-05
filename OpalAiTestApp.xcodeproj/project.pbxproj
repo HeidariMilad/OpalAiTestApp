@@ -29,6 +29,16 @@
 		11C3E5722C36C91A000A454D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11C3E5712C36C91A000A454D /* Main.storyboard */; };
 		11C3E5742C36C93C000A454D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3E5732C36C93C000A454D /* ViewController.swift */; };
 		11EC234C2C374F6400451209 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC234B2C374F6400451209 /* PageViewController.swift */; };
+		11EC23542C38283E00451209 /* DraggablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC234E2C38283E00451209 /* DraggablePresenter.swift */; };
+		11EC23552C38283E00451209 /* DraggableWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC234F2C38283E00451209 /* DraggableWorker.swift */; };
+		11EC23562C38283E00451209 /* DraggableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23502C38283E00451209 /* DraggableRouter.swift */; };
+		11EC23572C38283E00451209 /* DraggableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23512C38283E00451209 /* DraggableModels.swift */; };
+		11EC23582C38283E00451209 /* DraggableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23522C38283E00451209 /* DraggableViewController.swift */; };
+		11EC23592C38283E00451209 /* DraggableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23532C38283E00451209 /* DraggableInteractor.swift */; };
+		11EC235B2C3828A400451209 /* DraggableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */; };
+		11EC235D2C38577D00451209 /* UIScanViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC235C2C38577D00451209 /* UIScanViewerController.swift */; };
+		11EC235F2C38578E00451209 /* UIScanViewer3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC235E2C38578E00451209 /* UIScanViewer3D.swift */; };
+		11EC23612C38579C00451209 /* UIScanViewer2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23602C38579C00451209 /* UIScanViewer2D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +96,16 @@
 		11C3E5712C36C91A000A454D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11C3E5732C36C93C000A454D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		11EC234B2C374F6400451209 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		11EC234E2C38283E00451209 /* DraggablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggablePresenter.swift; sourceTree = "<group>"; };
+		11EC234F2C38283E00451209 /* DraggableWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableWorker.swift; sourceTree = "<group>"; };
+		11EC23502C38283E00451209 /* DraggableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableRouter.swift; sourceTree = "<group>"; };
+		11EC23512C38283E00451209 /* DraggableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableModels.swift; sourceTree = "<group>"; };
+		11EC23522C38283E00451209 /* DraggableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableViewController.swift; sourceTree = "<group>"; };
+		11EC23532C38283E00451209 /* DraggableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableInteractor.swift; sourceTree = "<group>"; };
+		11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableViewTableViewCell.swift; sourceTree = "<group>"; };
+		11EC235C2C38577D00451209 /* UIScanViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScanViewerController.swift; sourceTree = "<group>"; };
+		11EC235E2C38578E00451209 /* UIScanViewer3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScanViewer3D.swift; sourceTree = "<group>"; };
+		11EC23602C38579C00451209 /* UIScanViewer2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScanViewer2D.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				11C3E5472C36B97D000A454D /* UIScanViewer.h */,
+				11EC235C2C38577D00451209 /* UIScanViewerController.swift */,
+				11EC235E2C38578E00451209 /* UIScanViewer3D.swift */,
+				11EC23602C38579C00451209 /* UIScanViewer2D.swift */,
 			);
 			path = UIScanViewer;
 			sourceTree = "<group>";
@@ -166,6 +189,7 @@
 				11C3E56F2C36C43F000A454D /* TitleLabel.swift */,
 				110612362C3729CE009CC454 /* ToggleButton.swift */,
 				11EC234B2C374F6400451209 /* PageViewController.swift */,
+				11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -186,9 +210,23 @@
 		11C3E56E2C36BA3F000A454D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				11EC234D2C38281400451209 /* DraggableView */,
 				11C3E56D2C36BA21000A454D /* ScanViewer */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		11EC234D2C38281400451209 /* DraggableView */ = {
+			isa = PBXGroup;
+			children = (
+				11EC234E2C38283E00451209 /* DraggablePresenter.swift */,
+				11EC234F2C38283E00451209 /* DraggableWorker.swift */,
+				11EC23502C38283E00451209 /* DraggableRouter.swift */,
+				11EC23512C38283E00451209 /* DraggableModels.swift */,
+				11EC23522C38283E00451209 /* DraggableViewController.swift */,
+				11EC23532C38283E00451209 /* DraggableInteractor.swift */,
+			);
+			path = DraggableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +322,7 @@
 					};
 					11C3E5442C36B97D000A454D = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
 					};
 					11C3E5552C36B9A4000A454D = {
 						CreatedOnToolsVersion = 15.4;
@@ -344,6 +383,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EC23542C38283E00451209 /* DraggablePresenter.swift in Sources */,
+				11EC23552C38283E00451209 /* DraggableWorker.swift in Sources */,
+				11EC23562C38283E00451209 /* DraggableRouter.swift in Sources */,
+				11EC23572C38283E00451209 /* DraggableModels.swift in Sources */,
+				11EC23582C38283E00451209 /* DraggableViewController.swift in Sources */,
+				11EC23592C38283E00451209 /* DraggableInteractor.swift in Sources */,
 				11C3E5672C36BA0B000A454D /* ScanViewerPresenter.swift in Sources */,
 				11C3E5682C36BA0B000A454D /* ScanViewerWorker.swift in Sources */,
 				11C3E5692C36BA0B000A454D /* ScanViewerRouter.swift in Sources */,
@@ -360,6 +405,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EC23612C38579C00451209 /* UIScanViewer2D.swift in Sources */,
+				11EC235D2C38577D00451209 /* UIScanViewerController.swift in Sources */,
+				11EC235F2C38578E00451209 /* UIScanViewer3D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EC235B2C3828A400451209 /* DraggableViewTableViewCell.swift in Sources */,
 				11C3E5702C36C43F000A454D /* TitleLabel.swift in Sources */,
 				110612372C3729CE009CC454 /* ToggleButton.swift in Sources */,
 				11EC234C2C374F6400451209 /* PageViewController.swift in Sources */,
@@ -581,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -605,6 +655,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -616,6 +667,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

@@ -60,3 +60,61 @@ class ViewController: UIViewController, EditBtnDelegate, ToggleButtonDelegate {
     }
 
 }
+
+class MainViewController: UIViewController, UISheetPresentationControllerDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
+        
+        let presentButton = UIButton(type: .system)
+        presentButton.setTitle("Present Sheet", for: .normal)
+        presentButton.addTarget(self, action: #selector(presentSheet), for: .touchUpInside)
+        
+        presentButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(presentButton)
+        
+        NSLayoutConstraint.activate([
+            presentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            presentButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    var coder: NSCoder!
+    required init?(coder: NSCoder) {
+        self.coder = coder
+        super.init(coder: coder)
+    }
+    @objc func presentSheet() {
+        guard let draggableVC = DraggableViewController(coder: self.coder) else { fatalError() }
+          draggableVC.modalPresentationStyle = .pageSheet
+          
+          if let sheet = draggableVC.sheetPresentationController {
+              let smallDetent = UISheetPresentationController.Detent.custom { context in
+                  return 40
+              }
+              let mediumDetent = UISheetPresentationController.Detent.custom { context in
+                  return self.view.bounds.height / 3
+              }
+              
+              sheet.detents = [smallDetent, mediumDetent, .large()]
+              sheet.prefersGrabberVisible = true
+              sheet.largestUndimmedDetentIdentifier = mediumDetent.identifier
+              sheet.delegate = self
+          }
+          
+          present(draggableVC, animated: true, completion: nil)
+      }
+    
+    // MARK: - UISheetPresentationControllerDelegate
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
+    }
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        // Handle dismissal if necessary
+    }
+}
+
+
+
+
+
