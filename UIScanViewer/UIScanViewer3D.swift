@@ -44,7 +44,7 @@ public class ScanViewer3D: UIView {
     }
 
     func loadUSDZModel() {
-        guard let url = Bundle(for: type(of: self)).url(forResource: "sample", withExtension: "usdz") else {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "exportedRoom", withExtension: "usdz") else {
             fatalError("Failed to find USDZ file in the bundle")
         }
         

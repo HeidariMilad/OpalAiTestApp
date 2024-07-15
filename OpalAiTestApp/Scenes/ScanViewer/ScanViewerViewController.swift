@@ -94,7 +94,12 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
     func setupPageVIewController() {
         // Instantiate the PageViewController
         pageViewController = PageViewController(coder: self.coder)
-        pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
+        
+        if #available(iOS 17.0, *) {
+            pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
+        } else {
+            // Fallback on earlier versions
+        }
         
         // Add it as a child view controller
         addChild(pageViewController)
@@ -133,8 +138,12 @@ extension ScanViewerViewController: UISheetPresentationControllerDelegate {
     @objc func presentSheet() {
         draggableVC = DraggableViewController(coder: self.coder)
         pageViewController.viewControllers?.forEach({ scanViewer in
-            let scanViewer = scanViewer as? UIScanViewerController
-            scanViewer?.alertPresenter = draggableVC
+            if #available(iOS 17.0, *) {
+                let scanViewer = scanViewer as? UIScanViewerController
+                scanViewer?.alertPresenter = draggableVC
+            } else {
+                // Fallback on earlier versions
+            }
         })
         draggableVC.modalPresentationStyle = .pageSheet
         

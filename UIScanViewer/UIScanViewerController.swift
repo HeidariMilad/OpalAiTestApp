@@ -8,6 +8,7 @@
 import UIKit
 import UIComponents
 
+@available(iOS 17.0, *)
 public class UIScanViewerController: UIViewController {
     
     public var alertPresenter: UIViewController?
@@ -68,6 +69,7 @@ public class UIScanViewerController: UIViewController {
         self.view.bringSubviewToFront(descriptionText)
     }
     
+    @available(iOS 17.0, *)
     func setupScanViewer2D() {
         scanViewer2D = ScanViewer2D(frame: self.view.bounds)
         scanViewer2D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -96,12 +98,13 @@ public class UIScanViewerController: UIViewController {
             remove3DViewer()
             setupScanViewer2D()
         }else if self.scanViewer2D != nil {
-         remove2DViewer()
+            remove2DViewer()
             setupScanViewer3D()
         }
     }
 }
 
+@available(iOS 17.0, *)
 extension UIScanViewerController: ToggleButtonDelegate {
     
     public func toggled(state: UIComponents.ToggleButtonCases) {
@@ -110,6 +113,7 @@ extension UIScanViewerController: ToggleButtonDelegate {
     
 }
 
+@available(iOS 17.0, *)
 extension UIScanViewerController: EditBtnDelegate {
     func addTitleLabel(){
         titleLabel = TitleLabel(title: "OpalAiTest")

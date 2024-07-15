@@ -10,6 +10,17 @@
 		110612332C36ED59009CC454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110612322C36ED59009CC454 /* Assets.xcassets */; };
 		110612372C3729CE009CC454 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110612362C3729CE009CC454 /* ToggleButton.swift */; };
 		114B157E2C38B13200B56CEC /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B157D2C38B13200B56CEC /* DescriptionView.swift */; };
+		1190ED892C430ADE00ED7D83 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 1190ED882C430ADE00ED7D83 /* sample.json */; };
+		1190ED952C430B5600ED7D83 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED8A2C430B5600ED7D83 /* CGPoint+Extensions.swift */; };
+		1190ED962C430B5600ED7D83 /* FloorPlanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED8B2C430B5600ED7D83 /* FloorPlanData.swift */; };
+		1190ED972C430B5600ED7D83 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED8C2C430B5600ED7D83 /* Matrix.swift */; };
+		1190ED982C430B5600ED7D83 /* SurfaceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED8D2C430B5600ED7D83 /* SurfaceHelpers.swift */; };
+		1190ED992C430B5600ED7D83 /* FloorPlanArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED8F2C430B5600ED7D83 /* FloorPlanArea.swift */; };
+		1190ED9A2C430B5600ED7D83 /* FloorPlanObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED902C430B5600ED7D83 /* FloorPlanObject.swift */; };
+		1190ED9B2C430B5600ED7D83 /* FloorPlanSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED912C430B5600ED7D83 /* FloorPlanSection.swift */; };
+		1190ED9C2C430B5600ED7D83 /* FurnitureObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED922C430B5600ED7D83 /* FurnitureObject.swift */; };
+		1190ED9E2C4311EA00ED7D83 /* FloorPlanConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED9D2C4311EA00ED7D83 /* FloorPlanConfig.swift */; };
+		1190EDA02C43234500ED7D83 /* FloorPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190ED9F2C43234500ED7D83 /* FloorPlanView.swift */; };
 		11C3E52D2C36B8F1000A454D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3E52C2C36B8F1000A454D /* AppDelegate.swift */; };
 		11C3E52F2C36B8F1000A454D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3E52E2C36B8F1000A454D /* SceneDelegate.swift */; };
 		11C3E5362C36B8F2000A454D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11C3E5352C36B8F2000A454D /* Assets.xcassets */; };
@@ -43,6 +54,7 @@
 		11EC23632C385ADE00451209 /* sample.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11EC23622C385ADE00451209 /* sample.usdz */; };
 		11EC23682C38664700451209 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 11EC23672C38664700451209 /* sample.json */; };
 		11EC236A2C38672600451209 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23692C38672600451209 /* Model.swift */; };
+		11F2AF372C459DFE00BB5280 /* exportedRoom.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +93,17 @@
 		110612322C36ED59009CC454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		110612362C3729CE009CC454 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		114B157D2C38B13200B56CEC /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		1190ED882C430ADE00ED7D83 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
+		1190ED8A2C430B5600ED7D83 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		1190ED8B2C430B5600ED7D83 /* FloorPlanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorPlanData.swift; sourceTree = "<group>"; };
+		1190ED8C2C430B5600ED7D83 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		1190ED8D2C430B5600ED7D83 /* SurfaceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurfaceHelpers.swift; sourceTree = "<group>"; };
+		1190ED8F2C430B5600ED7D83 /* FloorPlanArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorPlanArea.swift; sourceTree = "<group>"; };
+		1190ED902C430B5600ED7D83 /* FloorPlanObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorPlanObject.swift; sourceTree = "<group>"; };
+		1190ED912C430B5600ED7D83 /* FloorPlanSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorPlanSection.swift; sourceTree = "<group>"; };
+		1190ED922C430B5600ED7D83 /* FurnitureObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FurnitureObject.swift; sourceTree = "<group>"; };
+		1190ED9D2C4311EA00ED7D83 /* FloorPlanConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanConfig.swift; sourceTree = "<group>"; };
+		1190ED9F2C43234500ED7D83 /* FloorPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanView.swift; sourceTree = "<group>"; };
 		11C3E5292C36B8F0000A454D /* OpalAiTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpalAiTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C3E52C2C36B8F1000A454D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C3E52E2C36B8F1000A454D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +137,7 @@
 		11EC23622C385ADE00451209 /* sample.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sample.usdz; sourceTree = "<group>"; };
 		11EC23672C38664700451209 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		11EC23692C38672600451209 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = exportedRoom.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +167,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1190ED8E2C430B5600ED7D83 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1190ED8A2C430B5600ED7D83 /* CGPoint+Extensions.swift */,
+				1190ED8B2C430B5600ED7D83 /* FloorPlanData.swift */,
+				1190ED8C2C430B5600ED7D83 /* Matrix.swift */,
+				1190ED8D2C430B5600ED7D83 /* SurfaceHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1190ED932C430B5600ED7D83 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1190ED8F2C430B5600ED7D83 /* FloorPlanArea.swift */,
+				1190ED902C430B5600ED7D83 /* FloorPlanObject.swift */,
+				1190ED912C430B5600ED7D83 /* FloorPlanSection.swift */,
+				1190ED922C430B5600ED7D83 /* FurnitureObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1190ED942C430B5600ED7D83 /* Helpers+Models */ = {
+			isa = PBXGroup;
+			children = (
+				1190ED8E2C430B5600ED7D83 /* Helpers */,
+				1190ED932C430B5600ED7D83 /* Models */,
+			);
+			path = "Helpers+Models";
+			sourceTree = "<group>";
+		};
 		11C3E5202C36B8F0000A454D = {
 			isa = PBXGroup;
 			children = (
@@ -183,11 +238,16 @@
 		11C3E5462C36B97D000A454D /* UIScanViewer */ = {
 			isa = PBXGroup;
 			children = (
+				1190ED942C430B5600ED7D83 /* Helpers+Models */,
 				11C3E5472C36B97D000A454D /* UIScanViewer.h */,
+				11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */,
 				11EC23622C385ADE00451209 /* sample.usdz */,
+				1190ED882C430ADE00ED7D83 /* sample.json */,
 				11EC235C2C38577D00451209 /* UIScanViewerController.swift */,
 				11EC235E2C38578E00451209 /* UIScanViewer3D.swift */,
 				11EC23602C38579C00451209 /* UIScanViewer2D.swift */,
+				1190ED9D2C4311EA00ED7D83 /* FloorPlanConfig.swift */,
+				1190ED9F2C43234500ED7D83 /* FloorPlanView.swift */,
 			);
 			path = UIScanViewer;
 			sourceTree = "<group>";
@@ -379,6 +439,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11EC23632C385ADE00451209 /* sample.usdz in Resources */,
+				11F2AF372C459DFE00BB5280 /* exportedRoom.usdz in Resources */,
+				1190ED892C430ADE00ED7D83 /* sample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,9 +482,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1190ED9A2C430B5600ED7D83 /* FloorPlanObject.swift in Sources */,
+				1190ED962C430B5600ED7D83 /* FloorPlanData.swift in Sources */,
+				1190ED9C2C430B5600ED7D83 /* FurnitureObject.swift in Sources */,
+				1190ED9E2C4311EA00ED7D83 /* FloorPlanConfig.swift in Sources */,
 				11EC23612C38579C00451209 /* UIScanViewer2D.swift in Sources */,
+				1190ED9B2C430B5600ED7D83 /* FloorPlanSection.swift in Sources */,
+				1190EDA02C43234500ED7D83 /* FloorPlanView.swift in Sources */,
+				1190ED972C430B5600ED7D83 /* Matrix.swift in Sources */,
 				11EC235D2C38577D00451209 /* UIScanViewerController.swift in Sources */,
+				1190ED992C430B5600ED7D83 /* FloorPlanArea.swift in Sources */,
+				1190ED952C430B5600ED7D83 /* CGPoint+Extensions.swift in Sources */,
 				11EC235F2C38578E00451209 /* UIScanViewer3D.swift in Sources */,
+				1190ED982C430B5600ED7D83 /* SurfaceHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
