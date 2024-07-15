@@ -7,7 +7,6 @@
 
 import UIKit
 import RoomPlan
-import RealityKit
 
 
 @available(iOS 17.0, *)
@@ -34,6 +33,7 @@ public class ScanViewer2D: UIView {
         
         floorPlanView = FloorPlanView(frame: self.bounds, floorPlanData: floorPlanData)
         self.addSubview(floorPlanView)
+        
         
     }
     

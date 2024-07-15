@@ -27,45 +27,50 @@ class FloorPlanView: UIView {
     }
 
     private func addGestureRecognizers() {
-            // Add pinch gesture recognizer for zoom
-            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
-            self.addGestureRecognizer(pinchGesture)
-            
-            // Add pan gesture recognizer for panning
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-            self.addGestureRecognizer(panGesture)
-        }
+        // Add pinch gesture recognizer for zoom
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        self.addGestureRecognizer(pinchGesture)
         
-        @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
-            switch gesture.state {
-            case .began, .changed:
-                let scale = gesture.scale
-                self.transform = self.transform.scaledBy(x: scale, y: scale)
-                currentScale *= scale
-                gesture.scale = 1.0
-            default:
-                break
-            }
+        // Add pan gesture recognizer for panning
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        self.addGestureRecognizer(panGesture)
+    }
+    
+    @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            let scale = gesture.scale
+            currentScale *= scale
+            gesture.scale = 1.0
+            setNeedsDisplay()
+        default:
+            break
         }
-        
-        @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-            switch gesture.state {
-            case .began, .changed:
-                let translation = gesture.translation(in: self)
-                self.transform = self.transform.translatedBy(x: translation.x, y: translation.y)
-                currentTranslation.x += translation.x
-                currentTranslation.y += translation.y
-                gesture.setTranslation(.zero, in: self)
-            default:
-                break
-            }
+    }
+    
+    @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            let translation = gesture.translation(in: self)
+            currentTranslation.x += translation.x
+            currentTranslation.y += translation.y
+            gesture.setTranslation(.zero, in: self)
+            setNeedsDisplay()
+        default:
+            break
         }
+    }
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext(), let floorPlanData = floorPlanData else {
             return
         }
 
+        // Apply the current scale and translation to the context
+        context.saveGState()
+        context.translateBy(x: currentTranslation.x, y: currentTranslation.y)
+        context.scaleBy(x: currentScale, y: currentScale)
+        
         // Set up drawing parameters
         context.setStrokeColor(UIColor.black.cgColor)
         context.setLineWidth(2.0)
@@ -93,13 +98,16 @@ class FloorPlanView: UIView {
             drawObject(object, in: context)
         }
 
-        // Reset stroke color to default
-        context.setStrokeColor(UIColor.black.cgColor)
-
-        // Draw furniture
-        for furniture in floorPlanData.furnitures {
-            drawFurniture(furniture, in: context)
-        }
+//        // Reset stroke color to default
+//        context.setStrokeColor(UIColor.black.cgColor)
+//
+//        // Draw furniture
+//        for furniture in floorPlanData.furnitures {
+//            drawFurniture(furniture, in: context)
+//        }
+        
+        // Restore the context to its original state
+        context.restoreGState()
     }
 
     private func drawObject(_ object: FloorPlanObject, in context: CGContext) {
@@ -114,4 +122,3 @@ class FloorPlanView: UIView {
         context.strokePath()
     }
 }
-
