@@ -7,6 +7,7 @@
 
 import UIKit
 import simd
+import UIComponents
 
 @available(iOS 17.0, *)
 class FloorPlanView: UIView {
@@ -89,7 +90,7 @@ class FloorPlanView: UIView {
         // Draw doors
         context.setStrokeColor(UIColor.red.cgColor)
         for object in floorPlanData.objects where object.objectType == .door {
-            drawObject(object, in: context)
+            drawDoor(object, in: context)
         }
 
         // Draw other custom elements (like openings)
@@ -120,5 +121,11 @@ class FloorPlanView: UIView {
         let rect = CGRect(x: furniture.center.x, y: furniture.center.y, width: furniture.width, height: furniture.height)
         context.addRect(rect)
         context.strokePath()
+    }
+    
+    private func drawDoor(_ object: FloorPlanObject, in context: CGContext) {
+        let doorSymbol = DoorSymbol(point1: object.point1, point2: object.point2)
+        doorSymbol.frame = bounds
+        doorSymbol.draw(bounds)
     }
 }
