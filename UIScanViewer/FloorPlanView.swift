@@ -74,7 +74,7 @@ class FloorPlanView: UIView {
         
         // Set up drawing parameters
         context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineWidth(2.0)
+        context.setLineWidth(5.0)
 
         // Draw walls
         for object in floorPlanData.objects where object.objectType == .wall {
@@ -82,30 +82,29 @@ class FloorPlanView: UIView {
         }
 
         // Draw windows
-        context.setStrokeColor(UIColor.blue.cgColor)
         for object in floorPlanData.objects where object.objectType == .window {
-            drawObject(object, in: context)
+            drawWindow(object, in: context)
         }
 
         // Draw doors
-        context.setStrokeColor(UIColor.red.cgColor)
         for object in floorPlanData.objects where object.objectType == .door {
             drawDoor(object, in: context)
         }
 
         // Draw other custom elements (like openings)
-        context.setStrokeColor(UIColor.green.cgColor)
+        context.setStrokeColor(UIColor(red: 0, green: 1, blue: 0, alpha: 0.6).cgColor)
         for object in floorPlanData.objects where object.objectType == .opening {
             drawObject(object, in: context)
         }
 
-//        // Reset stroke color to default
-//        context.setStrokeColor(UIColor.black.cgColor)
-//
-//        // Draw furniture
-//        for furniture in floorPlanData.furnitures {
-//            drawFurniture(furniture, in: context)
-//        }
+        // Reset stroke color to default
+        context.setStrokeColor(UIColor.red.cgColor)
+        context.setLineWidth(2.0)
+
+        // Draw furniture
+        for furniture in floorPlanData.furnitures {
+            drawFurniture(furniture, in: context)
+        }
         
         // Restore the context to its original state
         context.restoreGState()
@@ -117,15 +116,34 @@ class FloorPlanView: UIView {
         context.strokePath()
     }
 
+
+    
     private func drawFurniture(_ furniture: FurnitureObject, in context: CGContext) {
-        let rect = CGRect(x: furniture.center.x, y: furniture.center.y, width: furniture.width, height: furniture.height)
-        context.addRect(rect)
+        guard furniture.points.count == 4 else { return } // Ensure there are exactly 4 points
+        
+        context.saveGState() // Save the current graphics state
+        
+        // Draw the rectangle using the points
+        let offset:CGPoint = CGPoint(x: 0, y: 0)
+        context.move(to: furniture.points[0].applying(CGAffineTransform(translationX: offset.x, y: offset.y)))
+        context.addLine(to: furniture.points[2].applying(CGAffineTransform(translationX: offset.x, y: offset.y)))
+        context.addLine(to: furniture.points[3].applying(CGAffineTransform(translationX: offset.x, y: offset.y)))
+        context.addLine(to: furniture.points[1].applying(CGAffineTransform(translationX: offset.x, y: offset.y)))
+        context.closePath()
         context.strokePath()
+        
+        context.restoreGState() // Restore the graphics state to its previous state
     }
     
     private func drawDoor(_ object: FloorPlanObject, in context: CGContext) {
         let doorSymbol = DoorSymbol(point1: object.point1, point2: object.point2)
         doorSymbol.frame = bounds
         doorSymbol.draw(bounds)
+    }
+    
+    private func drawWindow(_ object: FloorPlanObject, in context: CGContext) {
+        let windowSymbol = WindowSymbol(point1: object.point1, point2: object.point2)
+        windowSymbol.frame = bounds
+        windowSymbol.draw(bounds)
     }
 }

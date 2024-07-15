@@ -56,6 +56,7 @@
 		11EC236A2C38672600451209 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC23692C38672600451209 /* Model.swift */; };
 		11F2AF372C459DFE00BB5280 /* exportedRoom.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */; };
 		11F2AF392C45CFE500BB5280 /* DoorSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */; };
+		11F2AF3B2C45DDE500BB5280 /* WindowSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		11EC23692C38672600451209 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = exportedRoom.usdz; sourceTree = "<group>"; };
 		11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorSymbol.swift; sourceTree = "<group>"; };
+		11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSymbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 				11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */,
 				114B157D2C38B13200B56CEC /* DescriptionView.swift */,
 				11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */,
+				11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				110612372C3729CE009CC454 /* ToggleButton.swift in Sources */,
 				11F2AF392C45CFE500BB5280 /* DoorSymbol.swift in Sources */,
 				11EC234C2C374F6400451209 /* PageViewController.swift in Sources */,
+				11F2AF3B2C45DDE500BB5280 /* WindowSymbol.swift in Sources */,
 				114B157E2C38B13200B56CEC /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
