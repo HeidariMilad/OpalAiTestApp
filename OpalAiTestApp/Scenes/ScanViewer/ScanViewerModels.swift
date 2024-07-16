@@ -11,21 +11,29 @@
 //
 
 import UIKit
+import RoomPlan
 
 enum ScanViewer
 {
   // MARK: Use cases
   
-  enum Something
+  enum PlanModel
   {
     struct Request
     {
     }
     struct Response
     {
+        var plan2D: CapturedRoom?
+        var plan3D: URL?
+        var sample3D: URL?
+        
     }
     struct ViewModel
     {
+        var plan2D: CapturedRoom?
+        var plan3D: URL?
+        var sample3D: URL?
     }
   }
 }

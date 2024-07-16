@@ -11,10 +11,52 @@
 //
 
 import UIKit
+import RoomPlan
 
 class ScanViewerWorker
 {
-  func doSomeWork()
-  {
-  }
+    
+    func get3DPlan() -> URL?
+    {
+        return loadUSDZModel()
+    }
+    func get2Dplan() -> CapturedRoom? {
+        return loadAndParseSampleJSON()
+    }
+    func get3DSample() -> URL?
+    {
+        return loadUSDZSampleModel()
+    }
+    
+    private func loadAndParseSampleJSON() -> CapturedRoom? {
+        do {
+            guard let filePath = Bundle.main.path(forResource: "sample", ofType: "json") else {
+                print("Error: sample.json not found")
+                return nil
+            }
+            
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath))
+            
+            let decoder = JSONDecoder()
+            let roomData = try decoder.decode(CapturedRoom.self, from: jsonData)
+            
+            return roomData
+        } catch {
+            print("Error loading or decoding JSON: \(error)")
+            return nil
+        }
+    }
+    
+    func loadUSDZModel() -> URL? {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "exportedRoom", withExtension: "usdz") else {
+            fatalError("Failed to find USDZ file in the bundle")
+        }
+        return url
+    }
+    func loadUSDZSampleModel() -> URL? {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "sample", withExtension: "usdz") else {
+            fatalError("Failed to find USDZ file in the bundle")
+        }
+        return url
+    }
 }

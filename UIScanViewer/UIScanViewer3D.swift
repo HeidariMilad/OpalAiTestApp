@@ -14,12 +14,16 @@ public class ScanViewer3D: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        //setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        //setup()
+    }
+    init(frame: CGRect, filePath: URL?) {
+        super.init(frame: frame)
+        setup(url: filePath)
     }
 
     public func cleanUp(){
@@ -29,9 +33,9 @@ public class ScanViewer3D: UIView {
         self.sceneView.scene = nil
         self.sceneView = nil
     }
-    func setup(){
+    func setup(url: URL?){
         setupSceneView()
-        loadUSDZModel()
+        loadUSDZModel(url: url)
         //setupGestures()
     }
     func setupSceneView() {
@@ -43,8 +47,9 @@ public class ScanViewer3D: UIView {
             self.backgroundColor = .clear
     }
 
-    func loadUSDZModel() {
-        guard let url = Bundle(for: type(of: self)).url(forResource: "exportedRoom", withExtension: "usdz") else {
+    
+    func loadUSDZModel(url: URL?) {
+        guard let url = url else {
             fatalError("Failed to find USDZ file in the bundle")
         }
         

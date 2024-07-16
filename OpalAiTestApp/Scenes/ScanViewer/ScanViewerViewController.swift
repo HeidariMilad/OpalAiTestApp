@@ -16,7 +16,7 @@ import UIScanViewer
 
 protocol ScanViewerDisplayLogic: class
 {
-  func displaySomething(viewModel: ScanViewer.Something.ViewModel)
+  func displayPlans(viewModel: ScanViewer.PlanModel.ViewModel)
 }
 
 class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
@@ -78,7 +78,7 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   {
     super.viewDidLoad()
       self.view.backgroundColor = UIColor(resource: .background)
-      setupPageVIewController()
+      getPlans()
   }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,12 +91,12 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
   //@IBOutlet weak var nameTextField: UITextField!
   
     var bottomConstraint: NSLayoutConstraint?
-    func setupPageVIewController() {
+    func setupPageVIewController(viewControllers: [UIViewController]) {
         // Instantiate the PageViewController
         pageViewController = PageViewController(coder: self.coder)
         
         if #available(iOS 17.0, *) {
-            pageViewController.orderedViewControllers = [UIScanViewerController(), UIScanViewerController()]
+            pageViewController.orderedViewControllers = viewControllers
         } else {
             // Fallback on earlier versions
         }
@@ -121,16 +121,30 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
         pageViewController.didMove(toParent: self)
     }
     
-  func doSomething()
-  {
-    let request = ScanViewer.Something.Request()
-    interactor?.doSomething(request: request)
-  }
   
-  func displaySomething(viewModel: ScanViewer.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    func getPlans(){
+        let request = ScanViewer.PlanModel.Request()
+        interactor?.getPlans(request: request)
+    }
+    func displayPlans(viewModel: ScanViewer.PlanModel.ViewModel)
+    {
+        let plan2D = viewModel.plan2D
+        let plan3D = viewModel.plan3D
+        let plan3DSample = viewModel.sample3D
+        
+        if #available(iOS 17.0, *) {
+            let firstViewController = UIScanViewerController()
+            firstViewController.plan2D = plan2D
+            firstViewController.plan3D = plan3D
+            
+            let secondViewController = UIScanViewerController()
+            secondViewController.plan3D = plan3DSample
+            secondViewController.plan2D = plan2D
+            setupPageVIewController(viewControllers: [firstViewController, secondViewController])
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
 
 

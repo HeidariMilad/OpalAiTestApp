@@ -14,7 +14,7 @@ import UIKit
 
 protocol ScanViewerPresentationLogic
 {
-  func presentSomething(response: ScanViewer.Something.Response)
+  func presentPlans(response: ScanViewer.PlanModel.Response)
 }
 
 class ScanViewerPresenter: ScanViewerPresentationLogic
@@ -23,9 +23,9 @@ class ScanViewerPresenter: ScanViewerPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: ScanViewer.Something.Response)
-  {
-    let viewModel = ScanViewer.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentPlans(response: ScanViewer.PlanModel.Response)
+    {
+        let viewModel = ScanViewer.PlanModel.ViewModel(plan2D: response.plan2D, plan3D: response.plan3D, sample3D: response.sample3D)
+        viewController?.displayPlans(viewModel: viewModel)
   }
 }

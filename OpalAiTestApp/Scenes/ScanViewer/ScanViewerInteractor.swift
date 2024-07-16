@@ -11,31 +11,41 @@
 //
 
 import UIKit
+import RoomPlan
 
 protocol ScanViewerBusinessLogic
 {
-  func doSomething(request: ScanViewer.Something.Request)
+  func getPlans(request: ScanViewer.PlanModel.Request)
 }
 
 protocol ScanViewerDataStore
 {
   //var name: String { get set }
+    var plan2D: CapturedRoom! { get set }
+    var plan3D: URL! { get set }
+    var plan3DSample: URL! { get set }
 }
 
 class ScanViewerInteractor: ScanViewerBusinessLogic, ScanViewerDataStore
 {
+    var plan2D: CapturedRoom!
+    var plan3D: URL!
+    var plan3DSample: URL!
+    
   var presenter: ScanViewerPresentationLogic?
   var worker: ScanViewerWorker?
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: ScanViewer.Something.Request)
+  func getPlans(request: ScanViewer.PlanModel.Request)
   {
-    worker = ScanViewerWorker()
-    worker?.doSomeWork()
-    
-    let response = ScanViewer.Something.Response()
-    presenter?.presentSomething(response: response)
+      worker = ScanViewerWorker()
+      plan3D = worker?.get3DPlan()
+      plan2D = worker?.get2Dplan()
+      plan3DSample = worker?.get3DSample()
+      
+      let response = ScanViewer.PlanModel.Response(plan2D: plan2D, plan3D: plan3D, sample3D: plan3DSample)
+      presenter?.presentPlans(response: response)
   }
 }

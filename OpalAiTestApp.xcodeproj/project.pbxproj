@@ -57,6 +57,8 @@
 		11F2AF372C459DFE00BB5280 /* exportedRoom.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */; };
 		11F2AF392C45CFE500BB5280 /* DoorSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */; };
 		11F2AF3B2C45DDE500BB5280 /* WindowSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */; };
+		11F2AF3F2C46042000BB5280 /* exportedRoom.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11F2AF3D2C46042000BB5280 /* exportedRoom.usdz */; };
+		11F2AF402C46042000BB5280 /* sample.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 11F2AF3E2C46042000BB5280 /* sample.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		11F2AF362C459DFE00BB5280 /* exportedRoom.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = exportedRoom.usdz; sourceTree = "<group>"; };
 		11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorSymbol.swift; sourceTree = "<group>"; };
 		11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSymbol.swift; sourceTree = "<group>"; };
+		11F2AF3D2C46042000BB5280 /* exportedRoom.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = exportedRoom.usdz; path = UIScanViewer/exportedRoom.usdz; sourceTree = SOURCE_ROOT; };
+		11F2AF3E2C46042000BB5280 /* sample.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = sample.usdz; path = UIScanViewer/sample.usdz; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,8 @@
 				11C3E5712C36C91A000A454D /* Main.storyboard */,
 				11C3E5732C36C93C000A454D /* ViewController.swift */,
 				11EC23692C38672600451209 /* Model.swift */,
+				11F2AF3D2C46042000BB5280 /* exportedRoom.usdz */,
+				11F2AF3E2C46042000BB5280 /* sample.usdz */,
 				11EC23672C38664700451209 /* sample.json */,
 			);
 			path = OpalAiTestApp;
@@ -266,8 +272,7 @@
 				11EC234B2C374F6400451209 /* PageViewController.swift */,
 				11EC235A2C3828A400451209 /* DraggableViewTableViewCell.swift */,
 				114B157D2C38B13200B56CEC /* DescriptionView.swift */,
-				11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */,
-				11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */,
+				11F2AF3C2C45F77B00BB5280 /* FloorPlanSymbols */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -305,6 +310,15 @@
 				11EC23532C38283E00451209 /* DraggableInteractor.swift */,
 			);
 			path = DraggableView;
+			sourceTree = "<group>";
+		};
+		11F2AF3C2C45F77B00BB5280 /* FloorPlanSymbols */ = {
+			isa = PBXGroup;
+			children = (
+				11F2AF382C45CFE500BB5280 /* DoorSymbol.swift */,
+				11F2AF3A2C45DDE500BB5280 /* WindowSymbol.swift */,
+			);
+			path = FloorPlanSymbols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +451,8 @@
 				11EC23682C38664700451209 /* sample.json in Resources */,
 				11C3E5392C36B8F2000A454D /* Base in Resources */,
 				11C3E5722C36C91A000A454D /* Main.storyboard in Resources */,
+				11F2AF3F2C46042000BB5280 /* exportedRoom.usdz in Resources */,
+				11F2AF402C46042000BB5280 /* sample.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

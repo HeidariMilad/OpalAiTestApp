@@ -7,6 +7,7 @@
 
 import UIKit
 import UIComponents
+import RoomPlan
 
 @available(iOS 17.0, *)
 public class UIScanViewerController: UIViewController {
@@ -17,6 +18,9 @@ public class UIScanViewerController: UIViewController {
     private var toggleBtn: ToggleButton!
     private var titleLabel: TitleLabel!
     private var descriptionText: DescriptionView!
+    
+    public var plan2D: CapturedRoom?
+    public var plan3D: URL?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +62,7 @@ public class UIScanViewerController: UIViewController {
         ])
     }
     func setupScanViewer3D() {
-        scanViewer3D = ScanViewer3D(frame: self.view.bounds)
+        scanViewer3D = ScanViewer3D(frame: self.view.bounds, filePath: plan3D)
         scanViewer3D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         descriptionText.updateDescription(title: "3D Floor Title", subTitle: "136K vertices, 212K faces")
@@ -71,7 +75,7 @@ public class UIScanViewerController: UIViewController {
     
     @available(iOS 17.0, *)
     func setupScanViewer2D() {
-        scanViewer2D = ScanViewer2D(frame: self.view.bounds)
+        scanViewer2D = ScanViewer2D(frame: self.view.bounds, plan2D: plan2D)
         scanViewer2D?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         descriptionText.updateDescription(title: "2D Floor Title")
