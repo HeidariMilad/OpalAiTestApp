@@ -99,7 +99,7 @@ class FloorPlanView: UIView {
 
         // Reset stroke color to default
         context.setStrokeColor(UIColor.red.cgColor)
-        context.setLineWidth(2.0)
+        context.setLineWidth(1.0)
 
         // Draw furniture
         for furniture in floorPlanData.furnitures {
@@ -111,6 +111,7 @@ class FloorPlanView: UIView {
     }
 
     private func drawObject(_ object: FloorPlanObject, in context: CGContext) {
+        context.setLineWidth(object.thickness)
         context.move(to: object.point1)
         context.addLine(to: object.point2)
         context.strokePath()
@@ -136,14 +137,18 @@ class FloorPlanView: UIView {
     }
     
     private func drawDoor(_ object: FloorPlanObject, in context: CGContext) {
+        context.setLineWidth(object.thickness)
         let doorSymbol = DoorSymbol(point1: object.point1, point2: object.point2)
         doorSymbol.frame = bounds
         doorSymbol.draw(bounds)
     }
     
     private func drawWindow(_ object: FloorPlanObject, in context: CGContext) {
+        context.setLineWidth(object.thickness)
         let windowSymbol = WindowSymbol(point1: object.point1, point2: object.point2)
         windowSymbol.frame = bounds
         windowSymbol.draw(bounds)
     }
 }
+
+
