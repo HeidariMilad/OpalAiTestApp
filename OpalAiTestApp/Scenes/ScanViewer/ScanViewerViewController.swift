@@ -141,6 +141,8 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
             secondViewController.plan3D = plan3DSample
             secondViewController.plan2D = plan2D
             setupPageVIewController(viewControllers: [firstViewController, secondViewController])
+            
+            
         } else {
             // Fallback on earlier versions
         }
@@ -151,7 +153,7 @@ class ScanViewerViewController: UIViewController, ScanViewerDisplayLogic
 extension ScanViewerViewController: UISheetPresentationControllerDelegate {
     @objc func presentSheet() {
         draggableVC = DraggableViewController(coder: self.coder)
-        pageViewController.viewControllers?.forEach({ scanViewer in
+        pageViewController.orderedViewControllers.forEach({ scanViewer in
             if #available(iOS 17.0, *) {
                 let scanViewer = scanViewer as? UIScanViewerController
                 scanViewer?.alertPresenter = draggableVC
